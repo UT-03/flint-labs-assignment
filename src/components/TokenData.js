@@ -13,7 +13,7 @@ const TokenData = ({ heading, chain, contractAddress }) => {
                 <h1>Loading...</h1>
             ) : (
                 <Row className="d-flex justify-content-center">
-                    <Col xs={12} lg={5}>
+                    <Col xs={12}>
                         <TokenDataCard
                             heading={heading}
                             currentBalance={currentBalance}
