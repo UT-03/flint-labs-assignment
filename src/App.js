@@ -1,9 +1,13 @@
-import Button from "react-bootstrap/Button";
+import "./App.css";
+import Header from "./components/Header";
+import TokenData from "./components/TokenData";
 
 const App = () => {
   return (
     <>
-      <Button>Click me...</Button>
+      <Header />
+
+      <TokenData />
     </>
   );
 }
