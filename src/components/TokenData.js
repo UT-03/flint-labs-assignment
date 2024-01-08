@@ -4,24 +4,21 @@ import Col from "react-bootstrap/Col";
 import TokenDataCard from "./TokenDataCard";
 import useNativeToken from "../hooks/NativeTokenHook";
 
-const TokenData = ({ heading, chain, contractAddress }) => {
-    const { isLoading, currentBalance, transactionCount, gasPrice } = useNativeToken(chain, contractAddress);
+const TokenData = ({ heading, chain, contractAddress, unit }) => {
+    const { currentBalance, transactionCount, gasPrice } = useNativeToken(chain, contractAddress);
 
     return (
         <Container className="py-5">
-            {isLoading ? (
-                <h1>Loading...</h1>
-            ) : (
-                <Row className="d-flex justify-content-center">
-                    <Col xs={12}>
-                        <TokenDataCard
-                            heading={heading}
-                            currentBalance={currentBalance}
-                            transactionCount={transactionCount}
-                            gasPrice={gasPrice} />
-                    </Col>
-                </Row>
-            )}
+            <Row className="d-flex justify-content-center">
+                <Col xs={12}>
+                    <TokenDataCard
+                        heading={heading}
+                        currentBalance={currentBalance}
+                        transactionCount={transactionCount}
+                        gasPrice={gasPrice}
+                        unit={unit} />
+                </Col>
+            </Row>
         </Container>
     );
 }

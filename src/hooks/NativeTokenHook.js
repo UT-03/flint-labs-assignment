@@ -1,21 +1,19 @@
 import { useEffect, useState } from "react";
-import { createPublicClient, formatEther, http } from 'viem'
-import { mantle } from 'viem/chains';
+import { createPublicClient, formatEther, http } from 'viem';
 
 const useNativeToken = (chain, contractAddress) => {
-    const [isLoading, setIsLoading] = useState(false);
     const [currentBalance, setCurrentBalance] = useState();
     const [transactionCount, setTransactionCount] = useState();
     const [gasPrice, setGasPrice] = useState();
 
     useEffect(() => {
         fetchToken();
-    }, []);
+        const interval = setInterval(fetchToken, 5000);
+
+        return () => clearInterval(interval);
+    });
 
     const fetchToken = async () => {
-        const address = "0xDCBc586cAb42a1D193CaCD165a81E5fbd9B428d7";
-        setIsLoading(true);
-
         const client = createPublicClient({
             chain: chain,
             transport: http(),
@@ -27,7 +25,7 @@ const useNativeToken = (chain, contractAddress) => {
         const balanceAsEther = +(+formatEther(balance)).toFixed(3);
 
         const transactionCount = await client.getTransactionCount({
-            address: address,
+            address: contractAddress,
         });
 
         const gasPrice = await client.getGasPrice();
@@ -36,11 +34,9 @@ const useNativeToken = (chain, contractAddress) => {
         setCurrentBalance(balanceAsEther);
         setTransactionCount(transactionCount);
         setGasPrice(gasPriceAsGWei);
-        setIsLoading(false);
     }
 
     return {
-        isLoading,
         currentBalance,
         transactionCount,
         gasPrice,
