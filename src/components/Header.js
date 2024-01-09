@@ -9,7 +9,7 @@ const Header = () => {
             expand="lg"
             className="bg-body-tertiary bg-black border-bottom">
             <Container>
-                <Navbar.Brand>
+                <Navbar.Brand className="d-flex align-items-center">
                     <img
                         src={FlintLogo}
                         className="d-inline-block align-top"
@@ -17,7 +17,7 @@ const Header = () => {
                         height={30}
                         alt="Flint Labs"
                     />{' '}
-                    Flint Labs
+                    <span className="text-accent fs-1 ms-3">Flint Labs</span>
                 </Navbar.Brand>
             </Container>
         </Navbar>

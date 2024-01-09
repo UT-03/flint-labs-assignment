@@ -14,7 +14,7 @@ const TokenDataCard = ({ heading, currentBalance, transactionCount, gasPrice, pe
             <Row>
                 <h1 className="text-accent">{heading}</h1>
             </Row>
-            <Row className="bg-black-300 border rounded shadow p-3">
+            <Row className="bg-black-300 rounded rounded-4 shadow p-3">
                 <DataCol
                     heading="Current Balance"
                     value={currentBalance}

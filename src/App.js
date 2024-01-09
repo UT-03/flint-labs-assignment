@@ -1,4 +1,5 @@
 import "./App.css";
+import Footer from "./components/Footer";
 import Header from "./components/Header";
 import TokenDataContainer from "./components/TokenDataContainer";
 import 'react-loading-skeleton/dist/skeleton.css';
@@ -12,6 +13,7 @@ const App = () => {
 
       <TokenDataContainer />
 
+      <Footer />
       <ToastContainer
         position="bottom-right"
         autoClose={5000}
