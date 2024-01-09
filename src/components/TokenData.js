@@ -8,7 +8,7 @@ const TokenData = ({ heading, chain, contractAddress, unit }) => {
     const { currentBalance, transactionCount, gasPrice } = useNativeToken(chain, contractAddress);
 
     return (
-        <Container className="py-5">
+        <Container className="py-4">
             <Row className="d-flex justify-content-center">
                 <Col xs={12}>
                     <TokenDataCard

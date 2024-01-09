@@ -3,9 +3,21 @@ import Navbar from "react-bootstrap/Navbar";
 
 const Header = () => {
     return (
-        <Navbar bg="dark" data-bs-theme="dark" expand="lg" className="bg-body-tertiary">
+        <Navbar
+            data-bs-theme="dark"
+            expand="lg"
+            className="bg-body-tertiary bg-black border-bottom">
             <Container>
-                <Navbar.Brand>Flint Labs</Navbar.Brand>
+                <Navbar.Brand>
+                    <img
+                        src="../assets/flint-logo.png"
+                        className="d-inline-block align-top"
+                        width={30}
+                        height={30}
+                        alt="Flint Labs"
+                    />
+                    Flint Labs
+                </Navbar.Brand>
             </Container>
         </Navbar>
     );

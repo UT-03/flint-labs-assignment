@@ -7,3 +7,23 @@
 body{
     background-color: 'red';
 }
+
+.bg-black{
+    background-color: black!important;
+}
+
+.bg-black-300{
+    background-color: #1a1a1a9e!important;
+}
+
+.text-white{
+    color: white;
+}
+
+.text-white-300{
+    color:#7f7474;
+}
+
+.text-accent{
+    color: #6de573;
+}

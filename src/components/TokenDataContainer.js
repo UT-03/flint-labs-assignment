@@ -5,7 +5,7 @@ import styles from "./TokenDataContainer.module.css";
 
 const TokenDataContainer = () => {
     return (
-        <Container fluid className={styles.container}>
+        <Container fluid className={[styles.container, "bg-black"].join(" ")}>
             <TokenData
                 heading="Mantle"
                 chain={mantle}

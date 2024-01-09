@@ -5,7 +5,10 @@ import DataCol from "./DataCol";
 const TokenDataCard = ({ heading, currentBalance, transactionCount, gasPrice, unit }) => {
     return (
         <Container fluid>
-            <Row className="bg-white border rounded shadow p-3">
+            <Row>
+                <h1 className="text-accent">{heading}</h1>
+            </Row>
+            <Row className="bg-black-300 border rounded shadow p-3">
                 <DataCol
                     heading="Current Balance"
                     value={currentBalance}
