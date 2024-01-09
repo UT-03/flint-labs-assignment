@@ -22,7 +22,7 @@ const useDesktopNotification = () => {
         if (!notificationPermission)
             await checkNotificationPermission();
 
-        const notification = new Notification(heading, {
+        new Notification(heading, {
             icon,
             body,
         });
