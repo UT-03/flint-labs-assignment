@@ -9,8 +9,8 @@ const Footer = () => {
         <footer className="text-light py-4 bg-black-300">
             <Container>
                 <Row>
-                    <Col md={6}>
-                        <Row className="d-flex justify-content-start align-items-center w-100">
+                    <Col xs={12} md={6}>
+                        <Row className="d-flex justify-content-start align-items-center">
                             <Col xs={1}>
                                 <Image
                                     width={50}
@@ -18,11 +18,11 @@ const Footer = () => {
                                     src={FlintLogo} />
                             </Col>
                             <Col className="align-items-center">
-                                <h1 className="text-accent ms-2 text-no-underline">Flint Labs</h1>
+                                <h1 className="text-accent ms-3 text-no-underline">Flint Labs</h1>
                             </Col>
                         </Row>
                     </Col>
-                    <Col md={6} className="d-flex flex-column align-items-end">
+                    <Col xs={12} md={6} className="d-flex flex-column align-items-end">
                         <h5>Utkarsh Tiwari</h5>
                         <p className='text-end'>
                             <strong>Mobile:</strong> +91 9118827966<br />
