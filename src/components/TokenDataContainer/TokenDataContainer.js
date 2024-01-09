@@ -1,5 +1,5 @@
 import Container from "react-bootstrap/Container";
-import TokenData from "./TokenData";
+import TokenData from "../TokenData/TokenData";
 import { mantle, linea, kroma } from 'viem/chains';
 import styles from "./TokenDataContainer.module.css";
 

@@ -1,8 +1,8 @@
 import React from 'react';
 import { Container, Row, Col, Image } from 'react-bootstrap';
-import FlintLogo from "../assets/flint-logo.png";
-import GithubIcon from "../assets/github-icon.svg";
-import LinkedinIcon from "../assets/linkedin-icon.svg";
+import FlintLogo from "../../assets/flint-logo.png";
+import GithubIcon from "../../assets/github-icon.svg";
+import LinkedinIcon from "../../assets/linkedin-icon.svg";
 
 const Footer = () => {
     return (

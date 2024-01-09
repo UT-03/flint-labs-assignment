@@ -2,7 +2,7 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import TokenDataCard from "./TokenDataCard";
-import useNativeToken from "../hooks/NativeTokenHook";
+import useNativeToken from "../../hooks/NativeTokenHook";
 import { toast } from "react-toastify";
 
 const TokenData = ({ heading, chain, contractAddress, blockRatePerHour, unit }) => {

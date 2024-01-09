@@ -1,7 +1,7 @@
 import "./App.css";
-import Footer from "./components/Footer";
-import Header from "./components/Header";
-import TokenDataContainer from "./components/TokenDataContainer";
+import Footer from "./components/UI/Footer";
+import Header from "./components/UI/Header";
+import TokenDataContainer from "./components/TokenDataContainer/TokenDataContainer";
 import 'react-loading-skeleton/dist/skeleton.css';
 import { ToastContainer } from "react-toastify";
 

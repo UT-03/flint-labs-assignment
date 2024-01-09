@@ -7,6 +7,10 @@ const formatBalance = (balance) => {
     return +(+formatEther(balance));
 }
 
+/*
+This hook takes chain, contract address and block rate per hour and returns 
+current balance, transaction count, current gas price and token balance 12 hours earlier
+*/
 const useNativeToken = (chain, contractAddress, blockRatePerHour) => {
     const [currentBalance, setCurrentBalance] = useState();
     const [transactionCount, setTransactionCount] = useState();
