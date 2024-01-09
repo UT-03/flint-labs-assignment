@@ -4,10 +4,6 @@
     font-family: 'Montserrat', sans-serif;
 }
 
-body{
-    background-color: 'red';
-}
-
 .bg-black{
     background-color: black!important;
 }
@@ -18,6 +14,14 @@ body{
 
 .text-white{
     color: white;
+}
+
+.text-red{
+    color:red!important;
+}
+
+.text-green{
+    color:#2fe42f!important;
 }
 
 .text-white-300{

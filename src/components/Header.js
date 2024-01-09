@@ -1,5 +1,6 @@
 import Container from "react-bootstrap/Container";
 import Navbar from "react-bootstrap/Navbar";
+import FlintLogo from "../assets/flint-logo.png";
 
 const Header = () => {
     return (
@@ -10,12 +11,12 @@ const Header = () => {
             <Container>
                 <Navbar.Brand>
                     <img
-                        src="../assets/flint-logo.png"
+                        src={FlintLogo}
                         className="d-inline-block align-top"
                         width={30}
                         height={30}
                         alt="Flint Labs"
-                    />
+                    />{' '}
                     Flint Labs
                 </Navbar.Brand>
             </Container>

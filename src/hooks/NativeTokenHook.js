@@ -3,10 +3,15 @@ import { createPublicClient, formatEther, http } from 'viem';
 
 const INTERVAL_TIME_IN_SECS = 5;
 
-const useNativeToken = (chain, contractAddress) => {
+const formatBalance = (balance) => {
+    return +(+formatEther(balance));
+}
+
+const useNativeToken = (chain, contractAddress, blockRatePerHour) => {
     const [currentBalance, setCurrentBalance] = useState();
     const [transactionCount, setTransactionCount] = useState();
     const [gasPrice, setGasPrice] = useState();
+    const [balanceTwelveHoursAgo, setBalanceTwelveHoursAgo] = useState();
 
     useEffect(() => {
         const fetchToken = async () => {
@@ -18,7 +23,6 @@ const useNativeToken = (chain, contractAddress) => {
             const balance = await client.getBalance({
                 address: contractAddress,
             });
-            const balanceAsEther = +(+formatEther(balance)).toFixed(3);
 
             const transactionCount = await client.getTransactionCount({
                 address: contractAddress,
@@ -27,16 +31,27 @@ const useNativeToken = (chain, contractAddress) => {
             const gasPrice = await client.getGasPrice();
             const gasPriceAsGWei = +formatEther(gasPrice, "gwei");
 
-            setCurrentBalance(balanceAsEther);
+            const currentBlock = await client.getBlock();
+            const currentBlockNumber = currentBlock.number;
+
+            const blockNumberTwelveHoursAgo = currentBlockNumber - (12n * blockRatePerHour);
+
+            const pastBalance = await client.getBalance({
+                address: contractAddress,
+                blockNumber: blockNumberTwelveHoursAgo,
+            });
+
+            setCurrentBalance(formatBalance(balance));
             setTransactionCount(transactionCount);
             setGasPrice(gasPriceAsGWei);
+            setBalanceTwelveHoursAgo(formatBalance(pastBalance));
         }
 
         fetchToken();
         const interval = setInterval(fetchToken, INTERVAL_TIME_IN_SECS * 1000);
 
         return () => clearInterval(interval);
-    }, [chain, contractAddress]);
+    }, [chain, contractAddress, blockRatePerHour]);
 
     useEffect(() => {
         const fetchBalance12HrsAgo = async () => {
@@ -53,10 +68,7 @@ const useNativeToken = (chain, contractAddress) => {
             const requiredTimeStamp = BigInt(currentTimeStamp - (12n * 60n * 60n));
 
             const lowerLimitStamp = requiredTimeStamp - (60n * 60n);
-
             const higherLimitStamp = requiredTimeStamp + (60n * 60n);
-
-            // console.log(currentTimeStamp, requiredTimeStamp);
 
             const currentBlock = await client.getBlock();
 
@@ -66,10 +78,10 @@ const useNativeToken = (chain, contractAddress) => {
             console.log(blockNumber);
             let requestsMade = 0;
 
-            const averageBlockTime = BigInt(17n);
+            const averageBlockTime = BigInt(10n);
 
             while (block.timestamp - requiredTimeStamp > 0) {
-                let decreaseBlocks = block.timestamp - requiredTimeStamp / averageBlockTime;
+                let decreaseBlocks = (block.timestamp - requiredTimeStamp) / averageBlockTime;
 
                 console.log("decreaseBlocks", decreaseBlocks);
 
@@ -88,7 +100,7 @@ const useNativeToken = (chain, contractAddress) => {
             // If we stepped below lower limit
             if (lowerLimitStamp && block.timestamp < lowerLimitStamp) {
                 while (block.timestamp < lowerLimitStamp) {
-                    blockNumber += 1;
+                    blockNumber += 1n;
 
                     block = await client.getBlock({
                         blockNumber: blockNumber,
@@ -117,14 +129,19 @@ const useNativeToken = (chain, contractAddress) => {
             console.log(currentBlock);
         }
 
-        // fetchBalance 12HrsAgo();
+        // fetchBalance12HrsAgo();
 
-    }, [chain, currentBalance]);
+        const interval = setInterval(fetchBalance12HrsAgo, 60 * 60 * 1000);
+
+        return () => clearInterval(interval);
+
+    }, [chain]);
 
     return {
         currentBalance,
         transactionCount,
         gasPrice,
+        balanceTwelveHoursAgo,
     };
 }
 

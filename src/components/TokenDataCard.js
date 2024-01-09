@@ -2,7 +2,13 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import DataCol from "./DataCol";
 
-const TokenDataCard = ({ heading, currentBalance, transactionCount, gasPrice, unit }) => {
+const TokenDataCard = ({ heading, currentBalance, transactionCount, gasPrice, percentChangeInTwelveHours, unit }) => {
+    let percentageChangeClassname = "";
+    if (percentChangeInTwelveHours > 0)
+        percentageChangeClassname = "text-green";
+    else if (percentChangeInTwelveHours < 0)
+        percentageChangeClassname = "text-red";
+
     return (
         <Container fluid>
             <Row>
@@ -22,7 +28,9 @@ const TokenDataCard = ({ heading, currentBalance, transactionCount, gasPrice, un
                     unit="Gwei" />
                 <DataCol
                     heading="Change in Last 12 Hours"
-                    value="-12.5%" />
+                    value={percentChangeInTwelveHours}
+                    unit="%"
+                    valueCssClasses={percentageChangeClassname} />
             </Row>
         </Container>
     )
